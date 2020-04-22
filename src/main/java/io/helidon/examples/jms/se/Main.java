@@ -65,10 +65,10 @@ public final class Main {
 
         return Routing.builder()
                 .register("/send", rules -> rules
-                        .get("/{name}", (req, res) -> {
-                            String name = req.path().param("name");
+                        .get("/{msg}", (req, res) -> {
+                            String msg = req.path().param("msg");
                             // Usage of emitter eg. sending message directly to channel jms-outgoing-channel
-                            messaging.send("jms-outgoing-channel", Message.of(name));
+                            messaging.send("jms-outgoing-channel", msg);
                             res.send("Message sent!");
                         }))
                 .build();
